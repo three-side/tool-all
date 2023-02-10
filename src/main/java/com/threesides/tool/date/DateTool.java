@@ -4,6 +4,7 @@ package com.threesides.tool.date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -30,5 +31,9 @@ public class DateTool {
 	public static Time getTime2() {
 		return Time.of(new Date());
 		// return Time.now();
+	}
+
+	public static Time getTime3() {
+		return Time.of(Calendar.getInstance());
 	}
 }
