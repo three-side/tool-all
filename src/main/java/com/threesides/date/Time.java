@@ -1,15 +1,13 @@
-package com.threesides.tool.date;
+package com.threesides.date;
 
 import java.time.Clock;
 import java.time.Instant;
-import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
 import static java.time.temporal.ChronoField.NANO_OF_DAY;
-import static java.time.temporal.ChronoField.SECOND_OF_DAY;
 
 /**
  * @author Di Wu

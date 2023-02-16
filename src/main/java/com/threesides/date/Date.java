@@ -1,10 +1,11 @@
-package com.threesides.tool.date;
+package com.threesides.date;
 
 import java.time.*;
 import java.time.chrono.IsoChronology;
+import java.util.Calendar;
 import java.util.Objects;
 
-import static com.threesides.tool.date.Time.SECONDS_PER_DAY;
+import static com.threesides.date.Time.SECONDS_PER_DAY;
 import static java.time.temporal.ChronoField.*;
 
 
@@ -41,6 +42,19 @@ public class Date extends java.util.Date {
 		Objects.requireNonNull(month, "month");
 		DAY_OF_MONTH.checkValidValue(dayOfMonth);
 		return create(year, month.getValue(), dayOfMonth);
+	}
+
+	public static Date of(java.util.Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return of(calendar);
+	}
+
+	public static Date of(Calendar calendar) {
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH);
+		int day = calendar.get(Calendar.DATE);
+		return create(year, month, day);
 	}
 
 	public static Date of(int year, int month, int dayOfMonth) {
