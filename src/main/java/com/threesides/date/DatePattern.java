@@ -58,7 +58,7 @@ public class DatePattern {
 	public static final String TIME_NOT_SEPARATOR_PATTERN = "HHmmss";
 	public static final String TIME_CHINESE_PATTERN = "HH时mm分ss秒";
 
-	// 时分
+	// 时分  ----------------------------------------------------------------
 	public static final String HOUR_MINUTE_COLON_PATTERN = "HH:mm";
 	public static final String HOUR_MINUTE_NOT_SEPARATOR_PATTERN = "HHmm";
 	public static final String HOUR_MINUTE_CHINESE_PATTERN = "HH时mm秒";
