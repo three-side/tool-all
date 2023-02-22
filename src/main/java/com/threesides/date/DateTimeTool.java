@@ -1,11 +1,7 @@
 package com.threesides.date;
 
 
-import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
 
-import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -199,6 +195,14 @@ public class DateTimeTool {
 		return beginOfDay(Calendar.getInstance());
 	}
 
+	public static Date beginOfDay(int year,int month,int dayOfMonth){
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR,year);
+		calendar.set(Calendar.MONTH,month-1);
+		calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+		return beginOfDay(calendar);
+	}
+
 	public static Date beginOfDay(int year,int dayOfYear){
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR,year);
@@ -230,6 +234,14 @@ public class DateTimeTool {
 		return endOfDay(calendar);
 	}
 
+	public static Date endOfDay(int year,int month,int dayOfMonth){
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR,year);
+		calendar.set(Calendar.MONTH,month-1);
+		calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+		return endOfDay(calendar);
+	}
+
 	public static Date endOfDay(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -239,6 +251,9 @@ public class DateTimeTool {
 	public static Date endOfDay(Calendar calendar){
 		return setEndTimeOfDay(calendar).getTime();
 	}
+
+	// TODO WEEK ----------------------------------------------------------------
+	// 获取周数
 
 	public static int weekOfYear(Date date) {
 		Calendar calendar = Calendar.getInstance();
@@ -250,6 +265,7 @@ public class DateTimeTool {
 		return calendar.get(Calendar.WEEK_OF_YEAR);
 	}
 
+	// 按每年最大周数计算周数
 	public static int weekOfYearMaxWeek(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -259,21 +275,30 @@ public class DateTimeTool {
 	public static int weekOfYearMaxWeek(Calendar calendar) {
 		calendar.setFirstDayOfWeek(MONDAY);
 		int week = calendar.get(Calendar.WEEK_OF_YEAR);
-		int oldYear = calendar.get(Calendar.YEAR);
+		int year =getYear(calendar);
 		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-		int endWeekYear = calendar.get(Calendar.YEAR);
-		if (oldYear != endWeekYear) {
+		int endWeekYear = getYear(calendar);
+		if (year != endWeekYear) {
 			week = calendar.getMaximum(Calendar.WEEK_OF_YEAR);
 		}
 		return week;
 	}
 
 
+	// beginOfWeek
 	public static Date beginOfWeek(Date date){
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		return beginOfWeek(calendar);
 	}
+
+	public static Date beginOfWeek(int year,int weekOfYear){
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.WEEK_OF_YEAR, weekOfYear);
+		return beginOfWeek(calendar);
+	}
+
 
 	public static Date beginOfWeek(Calendar calendar){
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
@@ -281,9 +306,18 @@ public class DateTimeTool {
 		return setBeginTimeOfDay(calendar).getTime();
 	}
 
+	// endOfWeek
+
 	public static Date endOfWeek(Date date){
 		Calendar calendar=Calendar.getInstance();
 		calendar.setTime(date);
+		return endOfWeek(calendar);
+	}
+
+	public static Date endOfWeek(int year,int weekOfYear){
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.WEEK_OF_YEAR, weekOfYear);
 		return endOfWeek(calendar);
 	}
 
