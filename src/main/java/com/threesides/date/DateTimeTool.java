@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static java.util.Calendar.MONDAY;
+
 
 /**
  * @author Di Wu
@@ -238,6 +240,58 @@ public class DateTimeTool {
 		return setEndTimeOfDay(calendar).getTime();
 	}
 
+	public static int weekOfYear(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return weekOfYear(calendar);
+	}
+	public static int weekOfYear(Calendar calendar) {
+		calendar.setFirstDayOfWeek(MONDAY);
+		return calendar.get(Calendar.WEEK_OF_YEAR);
+	}
+
+	public static int weekOfYearMaxWeek(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return weekOfYearMaxWeek(calendar);
+	}
+
+	public static int weekOfYearMaxWeek(Calendar calendar) {
+		calendar.setFirstDayOfWeek(MONDAY);
+		int week = calendar.get(Calendar.WEEK_OF_YEAR);
+		int oldYear = calendar.get(Calendar.YEAR);
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		int endWeekYear = calendar.get(Calendar.YEAR);
+		if (oldYear != endWeekYear) {
+			week = calendar.getMaximum(Calendar.WEEK_OF_YEAR);
+		}
+		return week;
+	}
+
+
+	public static Date beginOfWeek(Date date){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return beginOfWeek(calendar);
+	}
+
+	public static Date beginOfWeek(Calendar calendar){
+		calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		calendar.set(Calendar.DAY_OF_WEEK, MONDAY);
+		return setBeginTimeOfDay(calendar).getTime();
+	}
+
+	public static Date endOfWeek(Date date){
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTime(date);
+		return endOfWeek(calendar);
+	}
+
+	public static Date endOfWeek(Calendar calendar){
+		calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		return setEndTimeOfDay(calendar).getTime();
+	}
 
 
 	private static Calendar setBeginTimeOfDay(Calendar calendar) {
