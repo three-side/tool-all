@@ -68,6 +68,3 @@ gradlw.bat
 ### VS Code ###
 .vscode/
 
-
-/src/test/
-*/test/

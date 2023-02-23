@@ -2,6 +2,9 @@ package com.threesides.date;
 
 
 
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -107,6 +110,15 @@ public class DateTimeTool {
 		return setEndTimeOfDay(calendar).getTime();
 	}
 
+	// betweenYear
+	public static int betweenYear(Date beginDate, Date endDate) {
+		return getYear(endDate) - getYear(beginDate);
+	}
+
+	public static int betweenYear(Calendar beginCalendar, Calendar endCalendar) {
+		return getYear(endCalendar) - getYear(beginCalendar);
+	}
+
 	// TODO month ----------------------------------------------------------------
 
 	public static int getThisMonth() {
@@ -120,7 +132,7 @@ public class DateTimeTool {
 	}
 
 	public static int getMonth(Calendar calendar) {
-		return calendar.get(Calendar.MONTH);
+		return calendar.get(Calendar.MONTH) + 1;
 	}
 
 
@@ -171,6 +183,18 @@ public class DateTimeTool {
 		int daysOfMonth = calendar.getActualMaximum(Calendar.DATE);
 		calendar.set(Calendar.DATE,daysOfMonth);
 		return setEndTimeOfDay(calendar).getTime();
+	}
+
+	public static int betweenMonth(Date beginDate, Date endDate) {
+		int betweenYear = betweenYear(beginDate, endDate);
+		int betweenMonth = getMonth(endDate) - getMonth(beginDate);
+		return betweenYear * 12 + betweenMonth;
+	}
+
+	public static int betweenMonth(Calendar beginCalendar, Calendar endCalendar) {
+		int betweenYear = betweenYear(beginCalendar, endCalendar);
+		int betweenMonth = getMonth(endCalendar) - getMonth(beginCalendar);
+		return betweenYear * 12 + betweenMonth;
 	}
 
 	// TODO DAY ----------------------------------------------------------------
@@ -252,9 +276,18 @@ public class DateTimeTool {
 		return setEndTimeOfDay(calendar).getTime();
 	}
 
+	public static long betweenDay(Calendar beginCalendar, Calendar endCalendar) {
+		return betweenDay(beginCalendar.getTime(), endCalendar.getTime());
+	}
+
+	public static long betweenDay(Date beginDate, Date endDate) {
+		return between(beginDate, endDate, DateTimeUnit.DAY);
+
+	}
+
+
 	// TODO WEEK ----------------------------------------------------------------
 	// 获取周数
-
 	public static int weekOfYear(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -327,6 +360,13 @@ public class DateTimeTool {
 		return setEndTimeOfDay(calendar).getTime();
 	}
 
+	public static long betweenWeek(Calendar beginCalendar, Calendar endCalendar){
+		return betweenWeek(beginCalendar.getTime(), endCalendar.getTime());
+	}
+
+	public static long betweenWeek(Date beginDate, Date endDate){
+		return between(beginOfWeek(beginDate), beginOfWeek(endDate), DateTimeUnit.WEEK);
+	}
 
 	private static Calendar setBeginTimeOfDay(Calendar calendar) {
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -342,6 +382,11 @@ public class DateTimeTool {
 		calendar.set(Calendar.SECOND, 59);
 		calendar.set(Calendar.MILLISECOND, 999);
 		return calendar;
+	}
+
+	public static long between(Date beginDate, Date endDate,DateTimeUnit unit) {
+		long betweenMillis = endDate.getTime() - beginDate.getTime();
+		return betweenMillis / unit.getMillis();
 	}
 
 }
