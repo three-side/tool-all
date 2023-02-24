@@ -2,7 +2,7 @@ package com.threesides.date;
 
 /**
  * @author Di Wu
- * @date 2023/2/13
+ *
  */
 public class DatePattern {
 
