@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
-    <groupId>io.github.threeside</groupId>
+    <groupId>io.github.three-side</groupId>
     <artifactId>tool-all</artifactId>
     <version>1.0.0</version>
 
     <name>Java-Tool</name>
     <description>tool-all</description>
-    <url>https://github.com/threeside/tool-all</url>
+    <url>https://github.com/three-side/tool-all</url>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -59,9 +59,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/threeside/tool-all.git</connection>
-        <developerConnection>scm:git:ssh://github.com/threeside/tool-all.git</developerConnection>
-        <url>https://github.com/threeside/tool-all</url>
+        <connection>scm:git:git://github.com/three-side/tool-all.git</connection>
+        <developerConnection>scm:git:ssh://github.com/three-side/tool-all.git</developerConnection>
+        <url>https://github.com/three-side/tool-all</url>
     </scm>
 
     <distributionManagement>
