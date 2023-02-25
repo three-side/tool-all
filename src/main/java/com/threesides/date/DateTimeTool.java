@@ -367,6 +367,11 @@ public class DateTimeTool {
 		return between(beginOfWeek(beginDate), beginOfWeek(endDate), DateTimeUnit.WEEK);
 	}
 
+	public static long between(Date beginDate, Date endDate,DateTimeUnit unit) {
+		long betweenMillis = endDate.getTime() - beginDate.getTime();
+		return betweenMillis / unit.getMillis();
+	}
+
 	private static Calendar setBeginTimeOfDay(Calendar calendar) {
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
@@ -383,9 +388,6 @@ public class DateTimeTool {
 		return calendar;
 	}
 
-	public static long between(Date beginDate, Date endDate,DateTimeUnit unit) {
-		long betweenMillis = endDate.getTime() - beginDate.getTime();
-		return betweenMillis / unit.getMillis();
-	}
+
 
 }

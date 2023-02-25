@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.Assert.*;
 
 /**
  * @author Di Wu
@@ -18,30 +17,62 @@ public class DateTimeToolTest {
 
 	@Test
 	public void getDateTime() {
+
+		Date date = DateTimeTool.getDateTime();
+		Assert.assertNotNull(date);
 	}
 
 	@Test
 	public void testGetDateTime() {
+
+		Date date = DateTimeTool.getDateTime(Calendar.getInstance());
+		Assert.assertNotNull(date);
 	}
 
 	@Test
 	public void format() {
+		final String dateStr = "2023-02-20";
+		final Date date = DateTimeTool.parse(dateStr, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		String formatDate = DateTimeTool.format(date, DatePattern.DATE_CHINESE_PATTERN);
+		Assert.assertEquals("2023年02月20日",formatDate);
 	}
 
 	@Test
 	public void parse() {
+
+		final String dateStr = "2023-02-25 13:38";
+		Date date = DateTimeTool.parse(dateStr, DatePattern.DATE_MIDDLE_LINE_HOUR_MINUTE_COLON_PATTERN);
+		Assert.assertNotNull(date);
+
 	}
 
 	@Test
 	public void getThisYear() {
+		int thisYear = DateTimeTool.getThisYear();
+		Assert.assertEquals(2023,thisYear);
 	}
 
 	@Test
 	public void getYear() {
+		int newDateYear = DateTimeTool.getYear(new Date());
+		Assert.assertEquals(2023,newDateYear);
+
+		final String dateStr = "2022-02-25";
+		Date parseDate = DateTimeTool.parse(dateStr, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		int parseYear = DateTimeTool.getYear(parseDate);
+		Assert.assertEquals(2022,parseYear);
+
 	}
 
 	@Test
 	public void testGetYear() {
+		int calendarYear = DateTimeTool.getYear(Calendar.getInstance());
+		Assert.assertEquals(2023,calendarYear);
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, 2021);
+		int setCalendarYear = DateTimeTool.getYear(calendar);
+		Assert.assertEquals(2021,setCalendarYear);
 	}
 
 	@Test
