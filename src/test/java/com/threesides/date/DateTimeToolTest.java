@@ -10,7 +10,6 @@ import java.util.Date;
 
 /**
  * @author Di Wu
- *
  */
 public class DateTimeToolTest {
 
@@ -34,7 +33,7 @@ public class DateTimeToolTest {
 		final String dateStr = "2023-02-20";
 		final Date date = DateTimeTool.parse(dateStr, DatePattern.DATE_MIDDLE_LINE_PATTERN);
 		String formatDate = DateTimeTool.format(date, DatePattern.DATE_CHINESE_PATTERN);
-		Assert.assertEquals("2023年02月20日",formatDate);
+		Assert.assertEquals("2023年02月20日", formatDate);
 	}
 
 	@Test
@@ -49,46 +48,65 @@ public class DateTimeToolTest {
 	@Test
 	public void getThisYear() {
 		int thisYear = DateTimeTool.getThisYear();
-		Assert.assertEquals(2023,thisYear);
+		Assert.assertEquals(2023, thisYear);
 	}
 
 	@Test
 	public void getYear() {
 		int newDateYear = DateTimeTool.getYear(new Date());
-		Assert.assertEquals(2023,newDateYear);
+		Assert.assertEquals(2023, newDateYear);
 
 		final String dateStr = "2022-02-25";
 		Date parseDate = DateTimeTool.parse(dateStr, DatePattern.DATE_MIDDLE_LINE_PATTERN);
 		int parseYear = DateTimeTool.getYear(parseDate);
-		Assert.assertEquals(2022,parseYear);
+		Assert.assertEquals(2022, parseYear);
 
 	}
 
 	@Test
 	public void testGetYear() {
 		int calendarYear = DateTimeTool.getYear(Calendar.getInstance());
-		Assert.assertEquals(2023,calendarYear);
+		Assert.assertEquals(2023, calendarYear);
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR, 2021);
 		int setCalendarYear = DateTimeTool.getYear(calendar);
-		Assert.assertEquals(2021,setCalendarYear);
+		Assert.assertEquals(2021, setCalendarYear);
 	}
 
 	@Test
 	public void beginOfThisYear() {
+		Date beginOfThisYearDate = DateTimeTool.beginOfThisYear();
+		String formatDate = DateTimeTool.format(beginOfThisYearDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Assert.assertEquals("2023-01-01", formatDate);
 	}
 
 	@Test
 	public void beginOfYear() {
+		String strDate = "2023-02-16";
+		Date parseDate = DateTimeTool.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Date beginOfYeardate = DateTimeTool.beginOfYear(parseDate);
+		String formatDate = DateTimeTool.format(beginOfYeardate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Assert.assertEquals("2023-01-01", formatDate);
 	}
 
 	@Test
 	public void testBeginOfYear() {
+		String strDate = "2023-02-16";
+		Date parseDate = DateTimeTool.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(parseDate);
+		Date beginOfYeardate = DateTimeTool.beginOfYear(calendar);
+		String formatDate = DateTimeTool.format(beginOfYeardate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Assert.assertEquals("2023-01-01", formatDate);
 	}
 
 	@Test
 	public void testBeginOfYear1() {
+		Date beginOfYeardate = DateTimeTool.beginOfYear(2023);
+		String formatDate = DateTimeTool.format(beginOfYeardate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Assert.assertEquals("2023-01-01", formatDate);
 	}
 
 	@Test

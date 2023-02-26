@@ -1,8 +1,8 @@
 package com.threesides.date;
 
 /**
- * @author Di Wu
  *
+ * @author Di Wu
  */
 public class DatePattern {
 

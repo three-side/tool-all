@@ -5,8 +5,8 @@ package com.threesides.date;
 import java.time.temporal.ChronoUnit;
 
 /**
- * @author Di Wu
  *
+ * @author Di Wu
  */
 public enum DateTimeUnit {
 
