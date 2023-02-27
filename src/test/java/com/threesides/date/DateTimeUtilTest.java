@@ -299,15 +299,31 @@ public class DateTimeUtilTest {
 
 	@Test
 	public void getThisDayOfYear() {
+		int thisDayOfYear = DateTimeUtil.getThisDayOfYear();
+		Assert.assertNotNull(thisDayOfYear);
 	}
 
 	@Test
 	public void getDayOfYear() {
+
 	}
 
 	@Test
 	public void testGetDayOfYear() {
 	}
+
+	@Test
+	public void getThisDayOfMonth() {
+	}
+
+	@Test
+	public void getDayOfMonth() {
+	}
+
+	@Test
+	public void testGetDayOfMonth() {
+	}
+
 
 	@Test
 	public void beginOfThisDay() {

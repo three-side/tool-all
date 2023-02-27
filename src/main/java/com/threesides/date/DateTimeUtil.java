@@ -15,7 +15,7 @@ import static java.util.Calendar.MONDAY;
  *
  * @author Di Wu
  */
-public class DateTimeTool {
+public class DateTimeUtil {
 
 
 	// TODO DateTime ----------------------------------------------------------------
@@ -212,6 +212,19 @@ public class DateTimeTool {
 		return calendar.get(Calendar.DAY_OF_YEAR);
 	}
 
+	public static int getThisDayOfMonth() {
+		return getDayOfMonth(Calendar.getInstance());
+	}
+
+	public static int getDayOfMonth(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return getDayOfMonth(calendar);
+	}
+
+	public static int getDayOfMonth(Calendar calendar) {
+		return calendar.get(Calendar.DAY_OF_MONTH);
+	}
 
 	// beginOfDay
 	public static Date beginOfThisDay(){
