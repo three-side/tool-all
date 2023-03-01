@@ -338,7 +338,7 @@ public class DateTimeUtilTest {
 		String strDate = "2022-02-28";
 		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
 
-		int dayOfMonth = DateTimeUtil.getDayOfYear(date);
+		int dayOfMonth = DateTimeUtil.getDayOfMonth(date);
 		Assert.assertEquals(28, dayOfMonth);
 	}
 
@@ -348,49 +348,95 @@ public class DateTimeUtilTest {
 		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		int dayOfMonth = DateTimeUtil.getDayOfYear(calendar);
+		int dayOfMonth = DateTimeUtil.getDayOfMonth(calendar);
 		Assert.assertEquals(28, dayOfMonth);
 	}
 
 
 	@Test
 	public void beginOfThisDay() {
+		Date beginOfThisDayDate = DateTimeUtil.beginOfThisDay();
+		Assert.assertNotNull(beginOfThisDayDate);
 	}
 
 	@Test
 	public void beginOfDay() {
+
+		String strDate = "2022-04-16";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date beginOfDayDate = DateTimeUtil.beginOfDay(date);
+		String formatDate = DateTimeUtil.format(beginOfDayDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-04-16 00:00:00", formatDate);
+
 	}
 
 	@Test
 	public void testBeginOfDay() {
+		String strDate = "2022-04-16";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		Date beginOfDayDate = DateTimeUtil.beginOfDay(calendar);
+		String formatDate = DateTimeUtil.format(beginOfDayDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-04-16 00:00:00", formatDate);
 	}
 
 	@Test
 	public void testBeginOfDay1() {
+
+		Date beginOfDayDate = DateTimeUtil.beginOfDay(2022,4,16);
+		String formatDate = DateTimeUtil.format(beginOfDayDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-04-16 00:00:00", formatDate);
 	}
 
 	@Test
 	public void testBeginOfDay2() {
+		Date beginOfDayDate = DateTimeUtil.beginOfDay(2022, 106);
+		String formatDate = DateTimeUtil.format(beginOfDayDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-04-16 00:00:00", formatDate);
 	}
 
 	@Test
 	public void endOfThisDay() {
+		Date endOfThisDayDate = DateTimeUtil.endOfThisDay();
+		Assert.assertNotNull(endOfThisDayDate);
 	}
 
 	@Test
 	public void endOfDay() {
+		String strDate = "2022-04-16";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date endOfDayDate = DateTimeUtil.endOfDay(date);
+		String formatDate = DateTimeUtil.format(endOfDayDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-04-16 23:59:59", formatDate);
+
 	}
 
 	@Test
 	public void testEndOfDay() {
+		String strDate = "2022-04-16";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		Date endOfDayDate = DateTimeUtil.endOfDay(calendar);
+		String formatDate = DateTimeUtil.format(endOfDayDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-04-16 23:59:59", formatDate);
 	}
 
 	@Test
 	public void testEndOfDay1() {
+		Date endOfDayDate = DateTimeUtil.endOfDay(2022,4,16);
+		String formatDate = DateTimeUtil.format(endOfDayDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-04-16 23:59:59", formatDate);
 	}
 
 	@Test
 	public void testEndOfDay2() {
+		Date endOfDayDate = DateTimeUtil.endOfDay(2022, 106);
+		String formatDate = DateTimeUtil.format(endOfDayDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-04-16 23:59:59", formatDate);
 	}
 
 	@Test
