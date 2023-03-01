@@ -306,22 +306,50 @@ public class DateTimeUtilTest {
 	@Test
 	public void getDayOfYear() {
 
+		String strDate = "2023-02-28";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int dayOfYear = DateTimeUtil.getDayOfYear(date);
+
+		Assert.assertEquals(59, dayOfYear);
+
 	}
 
 	@Test
 	public void testGetDayOfYear() {
+		String strDate = "2022-02-28";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int dayOfYear = DateTimeUtil.getDayOfYear(calendar);
+		Assert.assertEquals(59, dayOfYear);
 	}
 
 	@Test
 	public void getThisDayOfMonth() {
+		int dayOfMonth = DateTimeUtil.getThisDayOfMonth();
+		Assert.assertNotNull(dayOfMonth);
+
 	}
 
 	@Test
 	public void getDayOfMonth() {
+		String strDate = "2022-02-28";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		int dayOfMonth = DateTimeUtil.getDayOfYear(date);
+		Assert.assertEquals(28, dayOfMonth);
 	}
 
 	@Test
 	public void testGetDayOfMonth() {
+		String strDate = "2022-02-28";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int dayOfMonth = DateTimeUtil.getDayOfYear(calendar);
+		Assert.assertEquals(28, dayOfMonth);
 	}
 
 
