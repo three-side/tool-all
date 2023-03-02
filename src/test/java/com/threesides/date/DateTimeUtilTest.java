@@ -441,34 +441,92 @@ public class DateTimeUtilTest {
 
 	@Test
 	public void betweenDay() {
+
+		String startStrDate = "2022-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar  startCalendar = Calendar.getInstance();
+		startCalendar.setTime(startDate);
+
+		String endStrDate = "2022-03-16";
+		Date endDate = DateTimeUtil.parse(endStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar endCalendar = Calendar.getInstance();
+		endCalendar.setTime(endDate);
+
+		long betweenDay = DateTimeUtil.betweenDay(startCalendar, endCalendar);
+		Assert.assertEquals(28,betweenDay);
 	}
 
 	@Test
 	public void testBetweenDay() {
+		String startStrDate = "2022-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		String endStrDate = "2022-03-16";
+		Date endDate = DateTimeUtil.parse(endStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		long betweenDay = DateTimeUtil.betweenDay(startDate, endDate);
+		Assert.assertEquals(28,betweenDay);
 	}
 
 	@Test
 	public void weekOfYear() {
+		String startStrDate = "2022-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		int weekOfYear = DateTimeUtil.weekOfYear(startDate);
+		Assert.assertEquals(8,weekOfYear);
 	}
 
 	@Test
 	public void testWeekOfYear() {
+		String startStrDate = "2022-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar  startCalendar = Calendar.getInstance();
+		startCalendar.setTime(startDate);
+
+		int weekOfYear = DateTimeUtil.weekOfYear(startCalendar);
+		Assert.assertEquals(8,weekOfYear);
 	}
 
 	@Test
 	public void weekOfYearMaxWeek() {
+		String startStrDate = "2022-12-31";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		int weekOfYear = DateTimeUtil.weekOfYearMaxWeek(startDate);
+		Assert.assertEquals(53,weekOfYear);
 	}
 
 	@Test
 	public void testWeekOfYearMaxWeek() {
+		String startStrDate = "2022-12-31";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar  startCalendar = Calendar.getInstance();
+		startCalendar.setTime(startDate);
+
+		int weekOfYear = DateTimeUtil.weekOfYearMaxWeek(startCalendar);
+		Assert.assertEquals(53,weekOfYear);
 	}
 
 	@Test
 	public void beginOfWeek() {
+		String strDate = "2022-2-16";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date beginOfWeekDate = DateTimeUtil.beginOfWeek(date);
+		String formatDate = DateTimeUtil.format(beginOfWeekDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+
+		Assert.assertEquals("2022-02-14 00:00:00",formatDate);
 	}
 
 	@Test
 	public void testBeginOfWeek() {
+		String strDate = "2022-2-16";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		Date beginOfWeekDate = DateTimeUtil.beginOfWeek(calendar);
+		String formatDate = DateTimeUtil.format(beginOfWeekDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+
+		Assert.assertEquals("2022-02-14 00:00:00",formatDate);
 	}
 
 	@Test
