@@ -531,29 +531,80 @@ public class DateTimeUtilTest {
 
 	@Test
 	public void testBeginOfWeek1() {
+		Date beginOfWeekDate = DateTimeUtil.beginOfWeek(2022,8);
+		String formatDate = DateTimeUtil.format(beginOfWeekDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+
+		Assert.assertEquals("2022-02-14 00:00:00",formatDate);
 	}
 
 	@Test
 	public void endOfWeek() {
+		String strDate = "2022-2-16";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date endOfWeekDate = DateTimeUtil.endOfWeek(date);
+		String formatDate = DateTimeUtil.format(endOfWeekDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+
+		Assert.assertEquals("2022-02-20 23:59:59",formatDate);
 	}
 
 	@Test
 	public void testEndOfWeek() {
+		String strDate = "2022-2-16";
+		Date date = DateTimeUtil.parse(strDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		Date endOfWeekDate = DateTimeUtil.endOfWeek(calendar);
+		String formatDate = DateTimeUtil.format(endOfWeekDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+
+		Assert.assertEquals("2022-02-20 23:59:59",formatDate);
 	}
 
 	@Test
 	public void testEndOfWeek1() {
+		Date endOfWeekDate = DateTimeUtil.endOfWeek(2022,8);
+		String formatDate = DateTimeUtil.format(endOfWeekDate, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-02-20 23:59:59",formatDate);
 	}
 
 	@Test
 	public void betweenWeek() {
+		String startStrDate = "2022-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar  startCalendar = Calendar.getInstance();
+		startCalendar.setTime(startDate);
+
+		String endStrDate = "2022-03-16";
+		Date endDate = DateTimeUtil.parse(endStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar endCalendar = Calendar.getInstance();
+		endCalendar.setTime(endDate);
+
+		long betweenWeek = DateTimeUtil.betweenWeek(startCalendar, endCalendar);
+		Assert.assertEquals(4,betweenWeek);
 	}
 
 	@Test
 	public void testBetweenWeek() {
+		String startStrDate = "2022-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		String endStrDate = "2022-03-16";
+		Date endDate = DateTimeUtil.parse(endStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		long betweenWeek = DateTimeUtil.betweenWeek(startDate, endDate);
+		Assert.assertEquals(4,betweenWeek);
 	}
 
 	@Test
 	public void between() {
+		String startStrDate = "2022-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		String endStrDate = "2022-03-16";
+		Date endDate = DateTimeUtil.parse(endStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		long betweenWeek = DateTimeUtil.between(startDate, endDate,DateTimeUnit.WEEK);
+		Assert.assertEquals(4,betweenWeek);
+
 	}
 }
