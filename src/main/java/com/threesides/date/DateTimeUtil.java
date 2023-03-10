@@ -27,6 +27,10 @@ public class DateTimeUtil {
 		return calendar.getTime();
 	}
 
+	public static Date getDateTime(long timeMillis) {
+		return new Date(timeMillis);
+	}
+
 	public static String format(Date date, String datePattern) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
 		return dateFormat.format(date);
@@ -384,6 +388,21 @@ public class DateTimeUtil {
 		long betweenMillis = endDate.getTime() - beginDate.getTime();
 		return betweenMillis / unit.getMillis();
 	}
+
+	public static Date offsetDay(Date date, int offset) {
+		return offset(date, offset,Calendar.DAY_OF_YEAR);
+	}
+	public static Date offsetWeek(Date date, int offset) {
+		return offset(date, offset,Calendar.DAY_OF_WEEK);
+	}
+
+	public static Date offset(Date date,  int offset,int unit) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(unit, offset);
+		return  calendar.getTime();
+	}
+
 
 	private static Calendar setBeginTimeOfDay(Calendar calendar) {
 		calendar.set(Calendar.HOUR_OF_DAY, 0);

@@ -607,4 +607,13 @@ public class DateTimeUtilTest {
 		Assert.assertEquals(4,betweenWeek);
 
 	}
+
+
+	@Test
+	public void test(){
+		String startStrDate = "2022-01-02";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Date date = DateTimeUtil.offsetDay(startDate, -5);
+		System.out.println("date = " + date);
+	}
 }
