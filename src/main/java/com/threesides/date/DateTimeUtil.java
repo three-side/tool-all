@@ -389,16 +389,76 @@ public class DateTimeUtil {
 		return betweenMillis / unit.getMillis();
 	}
 
-	public static Date offsetDay(Date date, int offset) {
-		return offset(date, offset,Calendar.DAY_OF_YEAR);
-	}
-	public static Date offsetWeek(Date date, int offset) {
-		return offset(date, offset,Calendar.DAY_OF_WEEK);
-	}
-
-	public static Date offset(Date date,  int offset,int unit) {
+	public static Date offsetMillisecond(Date date, int offset) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
+		return offsetMillisecond(calendar, offset);
+	}
+
+	public static Date offsetMillisecond(Calendar calendar, int offset) {
+		return offset(calendar, offset,Calendar.MILLISECOND);
+	}
+
+	public static Date offsetSecond(Date date, int offset) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return offsetSecond(calendar, offset);
+	}
+
+	public static Date offsetSecond(Calendar calendar, int offset) {
+		return offset(calendar, offset,Calendar.SECOND);
+	}
+	public static Date offsetMinute(Date date, int offset) {
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return offsetMinute(calendar, offset);
+	}
+	public static Date offsetMinute(Calendar calendar, int offset) {
+		return offset(calendar, offset,Calendar.MINUTE);
+	}
+
+	public static Date offsetHour(Date date, int offset) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return offsetHour(calendar, offset);
+	}
+
+	public static Date offsetHour(Calendar calendar, int offset) {
+		return offset(calendar, offset,Calendar.HOUR);
+	}
+
+	public static Date offsetDay(Date date, int offset) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return offsetDay(calendar, offset);
+	}
+
+	public static Date offsetDay(Calendar calendar, int offset) {
+		return offset(calendar, offset,Calendar.DAY_OF_YEAR);
+	}
+
+	public static Date offsetWeek(Date date, int offset) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return offsetWeek(calendar, offset);
+	}
+
+	public static Date offsetWeek(Calendar calendar, int offset) {
+		return offset(calendar, offset,Calendar.DAY_OF_WEEK);
+	}
+
+	public static Date offsetMonth(Date date, int offset) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return offsetMonth(calendar, offset);
+	}
+
+	public static Date offsetMonth(Calendar calendar, int offset) {
+		return offset(calendar, offset, Calendar.MONTH);
+	}
+
+	private static Date offset(Calendar calendar,  int offset,int unit) {
 		calendar.add(unit, offset);
 		return  calendar.getTime();
 	}

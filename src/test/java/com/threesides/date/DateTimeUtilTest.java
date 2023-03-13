@@ -4,6 +4,7 @@ package com.threesides.date;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -610,10 +611,166 @@ public class DateTimeUtilTest {
 
 
 	@Test
-	public void test(){
-		String startStrDate = "2022-01-02";
+	public void offsetMillisecond() {
+		String startStrDate = "2023-02-16";
 		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
-		Date date = DateTimeUtil.offsetDay(startDate, -5);
-		System.out.println("date = " + date);
+
+		Date date = DateTimeUtil.offsetMillisecond(startDate, -200);
+		Assert.assertEquals(1676476799800L, date.getTime());
+
 	}
+
+	@Test
+	public void testOffsetMillisecond() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+		Date date = DateTimeUtil.offsetMillisecond(calendar, -200);
+		Assert.assertEquals(1676476799800L, date.getTime());
+	}
+
+	@Test
+	public void offsetSecond() {
+
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date date = DateTimeUtil.offsetSecond(startDate, -20);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-15 23:59:40",formatDate);
+	}
+
+	@Test
+	public void testOffsetSecond() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+
+		Date date = DateTimeUtil.offsetSecond(calendar, -20);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-15 23:59:40",formatDate);
+	}
+
+	@Test
+	public void offsetMinute() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date date = DateTimeUtil.offsetMinute(startDate, -20);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-15 23:40:00",formatDate);
+	}
+
+	@Test
+	public void testOffsetMinute() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+
+		Date date = DateTimeUtil.offsetMinute(calendar, -20);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-15 23:40:00",formatDate);
+	}
+
+	@Test
+	public void offsetHour() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date date = DateTimeUtil.offsetHour(startDate, -4);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-15 20:00:00",formatDate);
+
+	}
+
+	@Test
+	public void testOffsetHour() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+
+		Date date = DateTimeUtil.offsetHour(calendar, -4);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-15 20:00:00",formatDate);
+	}
+
+	@Test
+	public void offsetDay() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date date = DateTimeUtil.offsetDay(startDate, -4);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-12 00:00:00",formatDate);
+	}
+
+	@Test
+	public void testOffsetDay() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+
+		Date date = DateTimeUtil.offsetDay(calendar, -4);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-12 00:00:00",formatDate);
+	}
+
+	@Test
+	public void offsetWeek() {
+
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date date = DateTimeUtil.offsetWeek(startDate, -4);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-12 00:00:00",formatDate);
+	}
+
+	@Test
+	public void testOffsetWeek() {
+
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+
+		Date date = DateTimeUtil.offsetWeek(calendar, -4);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2023-02-12 00:00:00",formatDate);
+	}
+
+	@Test
+	public void offsetMonth() {
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Date date = DateTimeUtil.offsetMonth(startDate, -4);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-10-16 00:00:00",formatDate);
+
+	}
+
+	@Test
+	public void testOffsetMonth(){
+		String startStrDate = "2023-02-16";
+		Date startDate = DateTimeUtil.parse(startStrDate, DatePattern.DATE_MIDDLE_LINE_PATTERN);
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+
+		Date date = DateTimeUtil.offsetMonth(calendar, -4);
+		String formatDate = DateTimeUtil.format(date, DatePattern.DATE_MIDDLE_LINE_TIME_COLON_PATTERN);
+		Assert.assertEquals("2022-10-16 00:00:00",formatDate);
+	}
+
 }
